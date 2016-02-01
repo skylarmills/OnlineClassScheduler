@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form method="post" action="/Account/Login">
+    <label>Username: </label><input type="text" name="username" /><br/>
+    <label>Password: </label><input type="password" name="password" /><br/>
+    <input type="checkbox" name="remember" value="true" />Remember Me<br/>
+    <button type="submit" name="login">Login</button>
+    <a href="/Account/Create">Create an account</a>
+</form>

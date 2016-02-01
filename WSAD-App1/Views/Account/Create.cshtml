@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<form method="post" action="/Account/Create">
+    <label>First Name: </label><input type="text" name="FirstName" required /><br />
+    <label>Last Name: </label><input type="text" name="LastName" required/><br />
+    <label>Email Adress: </label><input type="email" name="Email" required/><br />
+    <label>Gender: </label><input type="radio" name="Gender" value="Male" />Male<br />
+    <input type="radio" name="Gender" value="Female" />Female<br />
+    <label>Username: </label><input type="text" name="Username" required/><br />
+    <label>Password: </label><input type="password" name="Password" /><br />
+    <label>Confirm Password: </label><input type="password" name="PasswordConfirm" /><br />
+    <label>Would you like to receive emails?: </label><input type="checkbox" name="ReceiveEmails"/><br/>
+
+    <button type="submit" name="Create">Create Account</button>
+</form>
