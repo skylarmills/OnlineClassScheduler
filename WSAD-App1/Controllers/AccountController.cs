@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using WSAD_App1.Models.Data;
 using WSAD_App1.Models.ViewModels.Account;
 
 namespace WSAD_App1.Controllers
@@ -25,22 +27,58 @@ namespace WSAD_App1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(CreateUserViewModel createUser)
+        public ActionResult Create(CreateUserViewModel newUser)
         {
-            if (createUser.Password.Equals(createUser.PasswordConfirm))
+            //Check required fields
+            if (!ModelState.IsValid)
             {
-                return Content("First Name: " + createUser.FirstName + "<br/>"
-                    + "Last Name: " + createUser.LastName + "<br/>"
-                    + "Email Address: " + createUser.Email + "<br/>"
-                    + "Gender: " + createUser.Gender + "<br/>"
-                    + "Username: " + createUser.Username + "<br/>"
-                    + "Password: " + createUser.Password + "<br/>"
-                    + "Receive Emails: " + createUser.ReceiveEmail + "<br/>");
+                return View(newUser);
             }
-            else
+
+            //Check Password & PasswordConfirm
+            if(!newUser.Password.Equals(newUser.PasswordConfirm))
             {
-                return Content("Passwords do not match");
+                ModelState.AddModelError("", "Password does not match Password Confirm");
+                return View(newUser);
             }
+
+            //Create DbContext instance
+            using (WSADDbContext context = new WSADDbContext())
+            {
+                //Check username is not a duplicate
+                if (context.Users.Any(row => row.Username.Equals(newUser.Username)))
+                {
+                    ModelState.AddModelError("", "Username '" + newUser.Username + "' already exists. Try Again");
+                    newUser.Username = "";
+                    return View(newUser);
+
+                }
+                //Create User DTO
+                User newUserDTO = new Models.Data.User()
+                {
+                    FirstName = newUser.FirstName,
+                    LastName = newUser.LastName,
+                    EmailAddress = newUser.EmailAddress,
+                    IsActive = true,
+                    IsAdmin = false,
+                    Username = newUser.Username,
+                    Password = newUser.Password,
+                    DateCreated = DateTime.Now,
+                    DateModified = DateTime.Now
+
+                };
+
+                //Add to DbContext
+
+                newUserDTO = context.Users.Add(newUserDTO);
+
+                //Save changes
+                context.SaveChanges();
+            }
+
+            //Redirect to login
+            return RedirectToAction("login");
+
         }
         /// <summary>
         /// Logging users into the website
@@ -52,9 +90,39 @@ namespace WSAD_App1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(LoginUserViewModel loginUser)
         {
-            return Content("Hello " + username + ". Welcome to our application.");
+
+            //Open DB Connection
+            bool isValid = false;
+
+            using (WSADDbContext context = new WSADDbContext())
+            {
+                //Hash Password
+
+                //Query for user based on Username and Password
+                if(context.Users.Any(row=>row.Username.Equals(loginUser.Username)
+                && row.Password.Equals(loginUser.Password)))
+                {
+                    isValid = true;
+                }
+            }
+
+            if(!isValid)
+            {
+                ModelState.AddModelError("", "Invalid Username or Password");
+                return View();
+
+            }
+
+            else
+            {
+                //If valid, redirect to the user profile
+                FormsAuthentication.SetAuthCookie(loginUser.Username, loginUser.RememberMe);
+
+                return Redirect(FormsAuthentication.GetRedirectUrl(loginUser.Username, loginUser.RememberMe));
+            }
+        
         }
     }
 }
