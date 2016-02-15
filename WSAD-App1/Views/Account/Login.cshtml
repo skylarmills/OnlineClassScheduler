@@ -6,6 +6,13 @@
 
 <h2>Login</h2>
 
+@if(TempData["LogoutMessage"] != null)
+{
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        @TempData["LogoutMessage"]
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
