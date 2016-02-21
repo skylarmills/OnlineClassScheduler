@@ -9,6 +9,7 @@ using WSAD_App1.Models.ViewModels.Account;
 
 namespace WSAD_App1.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         // GET: Account
@@ -22,11 +23,14 @@ namespace WSAD_App1.Controllers
         /// </summary>
         /// <returns>ViewResult for the create</returns>
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
         }
+        
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Create(CreateUserViewModel newUser)
         {
             //Check required fields
@@ -86,11 +90,14 @@ namespace WSAD_App1.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(LoginUserViewModel loginUser)
         {
 
@@ -164,7 +171,7 @@ namespace WSAD_App1.Controllers
             return PartialView(userNavVM);
         }
 
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(int? id = null)
         {
             //Captuer Logged in user
             string username = User.Identity.Name;
@@ -175,7 +182,15 @@ namespace WSAD_App1.Controllers
             using (WSADDbContext context = new WSADDbContext())
             {
                 //Get user from DB
-                User userDTO = context.Users.FirstOrDefault(row => row.Username == username);
+                User userDTO;
+                if (id.HasValue)
+                {
+                    userDTO = context.Users.Find(id.Value);
+                }
+                else
+                {
+                    userDTO = context.Users.FirstOrDefault(row => row.Username == username);
+                }
 
                 if(userDTO == null)
                 {
