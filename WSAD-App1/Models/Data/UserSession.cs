@@ -16,5 +16,11 @@ namespace WSAD_App1.Models.Data
         [Column(Order = 1)]
         [Key]
         public int Session_Id { get; set; }
+
+        [ForeignKey("User_Id")]
+        public virtual User User { get; set; }
+        [ForeignKey("Session_Id")]
+        public virtual Session Session { get; set; }
+
     }
 }

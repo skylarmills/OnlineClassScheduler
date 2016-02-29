@@ -1,0 +1,65 @@
+﻿@model WSAD_App1.Models.ViewModels.Course.DisplaySessionViewModel
+
+@{
+    ViewBag.Title = "Schedule";
+}
+
+<h2>Current Schedule</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Occupancy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Occupancy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSelected)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSelected)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

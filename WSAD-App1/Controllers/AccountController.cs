@@ -236,7 +236,7 @@ namespace WSAD_App1.Controllers
                 editVM = new EditViewModel()
                 {
                     EmailAddress = userDTO.EmailAddress,
-                    FirstName = userDTO.FirstName,
+                    FirstName = userDTO.FirstName, 
                     Id = userDTO.Id,
                     LastName = userDTO.LastName,
                     UserName = userDTO.Username,

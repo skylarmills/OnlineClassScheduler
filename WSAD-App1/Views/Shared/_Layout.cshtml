@@ -22,6 +22,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Sign Up", "Index", "Course")</li>
+                    <li>@Html.ActionLink("View Schedule", "Index", "Schedule")</li>
                     <li>@Html.ActionLink("Contact Us", "Index", "Correspondence")</li>
                     @if(Request.IsAuthenticated)
                     {

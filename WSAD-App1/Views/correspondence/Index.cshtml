@@ -1,12 +1,12 @@
 ﻿@model WSAD_App1.Models.ViewModels.Correspondence.ContactEmailViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Schedule";
 }
 
 <h2>Contact Us</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Index","Schedule")) 
 {
     @Html.AntiForgeryToken()
     
