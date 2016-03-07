@@ -1,0 +1,64 @@
+﻿@model List<WSAD_App1.Models.ViewModels.Schedule.EnrolledSessionViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Current Schedule</h2>
+
+
+@using (Html.BeginForm("Delete", "Schedule"))
+{
+<table class="table">
+    <tr>
+        <th>
+            Delete
+        </th>
+        <th>
+            Course
+        </th>
+        <th>
+            Instructor
+        </th>
+        <th>
+            Meeting Date
+        </th>
+        <th>
+            Meeting Time
+        </th>
+        <th>
+            Occupancy
+        </th>
+        <th></th>
+    </tr>
+
+@*foreach (var item in Model)*@
+@for (int i = 0; i < Model.Count; i++)
+{
+    var item = Model[i];
+    <tr>
+        <td>
+            @Html.HiddenFor(x => Model[i].Session_Id)
+            @Html.CheckBoxFor(x => Model[i].IsSelected)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session.Course)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session.Instructor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session.MeetingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session.MeetingTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Session.Occupancy)
+        </td>
+    </tr>
+}
+
+</table>
+<button type="submit" class="btn btn-danger">Delete Session</button>
+}
