@@ -15,12 +15,12 @@ namespace WSAD_App1.Models.ViewModels.Course
 
         public EnrollSessionViewModel(Session sessionDTO)
         {
-            Id = sessionDTO.Id;
-            Course = sessionDTO.Course;
-            Instructor = sessionDTO.Instructor;
-            MeetingDate = sessionDTO.MeetingDate;
-            MeetingTime = sessionDTO.MeetingTime;
-            Occupancy = sessionDTO.Occupancy;
+            this.Id = sessionDTO.Id;
+            this.Course = sessionDTO.Course;
+            this.Instructor = sessionDTO.Instructor;
+            this.MeetingDate = sessionDTO.MeetingDate;
+            this.MeetingTime = sessionDTO.MeetingTime;
+            this.Occupancy = sessionDTO.Occupancy;
         }
         public int Id { get; set; }
         public string Course { get; set; }

@@ -38,5 +38,28 @@ namespace WSAD_App1.Controllers
             }
                 return View(enrolledSessions);
         }
+
+        [HttpPost]
+        public ActionResult Delete(List<EnrolledSessionViewModel> collectionOfSessionsVM)
+        {
+            //Get sessions to delete
+
+            var vmItemsToDelete = collectionOfSessionsVM.Where(x => x.IsSelected == true);
+
+            //Do delete
+
+            using (WSADDbContext context = new WSADDbContext())
+            {
+                //Loop through ViewModel Items to delete
+                foreach (var vmItem in vmItemsToDelete)
+                {
+                    var dtoToDelete = context.UserSessions.FirstOrDefault(row => row.Session_Id == vmItem.Session_Id);
+                    context.UserSessions.Remove(dtoToDelete);
+                }
+
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

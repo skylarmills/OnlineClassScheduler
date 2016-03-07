@@ -15,7 +15,7 @@ namespace WSAD_App1.Controllers
         public ActionResult Index()
         {
             //Setup a DBcontext
-            List<EnrollSessionViewModel> collectionOfUserVM = new List<EnrollSessionViewModel>();
+            List<EnrollSessionViewModel> collectionOfSessionVM = new List<EnrollSessionViewModel>();
             using (WSADDbContext context = new WSADDbContext())
             {
                 //Get all sessions
@@ -24,13 +24,13 @@ namespace WSAD_App1.Controllers
                 //Move users to ViewModel Object
                 foreach (var sessionDTO in dbSessions)
                 {
-                    collectionOfUserVM.Add(
+                    collectionOfSessionVM.Add(
                         new EnrollSessionViewModel(sessionDTO)
                         );
                 }
             }
             //Send ViewModel Collete
-            return View(collectionOfUserVM);
+            return View(collectionOfSessionVM);
         }
 
         [HttpPost]
@@ -42,32 +42,44 @@ namespace WSAD_App1.Controllers
             //Get logged in user
             string username = User.Identity.Name;
             User userDTO;
-            UserSession userSessionDTO = new UserSession();
+            
 
             //Do Enroll
 
             using (WSADDbContext context = new WSADDbContext())
             {
+      
+
                 //Get user db info an Id
                 userDTO = context.Users.FirstOrDefault(row => row.Username == username);
                 int userId = userDTO.Id;
                 //Loop through ViewModel Items to update
                 foreach (var vmItem in vmItemsToEnroll)
                 {
+                    UserSession userSessionDTO = new UserSession();
                     var sessionDTO = context.Sessions.FirstOrDefault(row => row.Id == vmItem.Id);
-                    sessionDTO.Occupancy++;
 
                     
                     userSessionDTO.User_Id = userId;
                     userSessionDTO.Session_Id = vmItem.Id;
 
-                    userSessionDTO = context.UserSessions.Add(userSessionDTO);
+                   /* //Check session hasn't already been enrolled by user
+                    if (context.UserSessions.Any(row => row.User_Id.Equals(userId)) && context.UserSessions.Any(row => row.Session_Id.Equals(vmItem.Id)))
+                    {
+                        ModelState.AddModelError("", "Session '" + sessionDTO.Course + "' is already registered. Try Again");
+                        return View(collectionOfSessionsVM);
+
+                    }*/
+
+                   // else {
+                    context.UserSessions.Add(userSessionDTO);
+                 //   }
 
                 }
 
                 context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Schedule");
 
         }
     }

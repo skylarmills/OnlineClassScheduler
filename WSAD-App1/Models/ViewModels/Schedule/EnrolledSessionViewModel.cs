@@ -24,5 +24,6 @@ namespace WSAD_App1.Models.ViewModels.Schedule
         public int User_Id { get; set; }
         public int Session_Id { get; set; }
         public SessionViewModel Session { get; set; }
-        }
+        public bool IsSelected { get; set; }
+    }
     }

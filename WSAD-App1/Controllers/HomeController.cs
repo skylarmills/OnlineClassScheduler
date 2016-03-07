@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WSAD_App1.Controllers
 {
-    [Authorize]
+
     public class HomeController : Controller
     {
         
@@ -15,7 +15,7 @@ namespace WSAD_App1.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
