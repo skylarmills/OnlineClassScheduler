@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WSAD_App1.Models.Data;
-using WSAD_App1.Models.ViewModels.ManageUser;
+using WSAD_App1.Areas.Admin.Models.ViewModels.ManageUser;
 
-namespace WSAD_App1.Controllers
+namespace WSAD_App1.Areas.Admin.Controllers
 {
     public class ManageUserController : Controller
     {

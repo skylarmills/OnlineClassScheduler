@@ -156,12 +156,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageSessionController.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ManageSession\ManageSessionViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CorrespondenceController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageUserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,7 +182,7 @@
     <Compile Include="Models\ViewModels\Correspondence\ContactEmailViewModel.cs" />
     <Compile Include="Models\ViewModels\Course\SessionViewModel.cs" />
     <Compile Include="Models\ViewModels\Schedule\EnrolledSessionViewModel.cs" />
-    <Compile Include="Models\ViewModels\ManageUser\ManageUserViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ManageUser\ManageUserViewModel.cs" />
     <Compile Include="Models\ViewModels\Course\EnrollSessionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -197,6 +200,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSession\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -231,13 +237,14 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\correspondence\Index.cshtml" />
     <Content Include="Views\correspondence\emailConfirmation.cshtml" />
-    <Content Include="Views\ManageUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageUser\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Schedule.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

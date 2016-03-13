@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using WSAD_App1.Models.Data;
 
-namespace WSAD_App1.Models.ViewModels.ManageUser
+namespace WSAD_App1.Areas.Admin.Models.ViewModels.ManageUser
 {
     public class ManageUserViewModel
     {
