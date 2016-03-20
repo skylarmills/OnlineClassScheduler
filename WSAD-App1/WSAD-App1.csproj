@@ -170,8 +170,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\Correspondence.cs" />
+    <Compile Include="Models\Data\Role.cs" />
     <Compile Include="Models\Data\Session.cs" />
     <Compile Include="Models\Data\User.cs" />
+    <Compile Include="Models\Data\UserRole.cs" />
     <Compile Include="Models\Data\UserSession.cs" />
     <Compile Include="Models\Data\WSADDbContext.cs" />
     <Compile Include="Models\ViewModels\Account\CreateUserViewModel.cs" />

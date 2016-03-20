@@ -12,5 +12,7 @@ namespace WSAD_App1.Models.Data
         public DbSet<Correspondence> Correspondences { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<UserSession> UserSessions { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }

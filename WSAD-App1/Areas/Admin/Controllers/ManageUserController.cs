@@ -8,6 +8,7 @@ using WSAD_App1.Areas.Admin.Models.ViewModels.ManageUser;
 
 namespace WSAD_App1.Areas.Admin.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class ManageUserController : Controller
     {
         // GET: ManageUser
