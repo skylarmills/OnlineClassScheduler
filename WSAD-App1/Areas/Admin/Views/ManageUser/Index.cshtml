@@ -80,6 +80,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", "Account", new { /* id=item.Id */ }, null) |
             @Html.ActionLink("Details", "UserProfile", "Account", new { /* id=item.Id */ }, null) |
+            @Html.ActionLink("View Sessions", "SessionListByUser", "ManageUserSessions", new { userId = item.Id }, null) |
             @Html.ActionLink("Delete", "Delete", "Account", new { /* id=item.Id */ }, null)
         </td>
     </tr>
