@@ -22,5 +22,7 @@ namespace WSAD_App1.Models.Data
         [ForeignKey("Session_Id")]
         public virtual Session Session { get; set; }
 
+
+        
     }
 }

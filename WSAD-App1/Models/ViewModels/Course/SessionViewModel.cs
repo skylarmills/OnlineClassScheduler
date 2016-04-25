@@ -21,6 +21,7 @@ namespace WSAD_App1.Models.ViewModels.Course
             this.MeetingDate = sessionDTO.MeetingDate;
             this.MeetingTime = sessionDTO.MeetingTime;
             this.Occupancy = sessionDTO.Occupancy;
+            this.Description = sessionDTO.Description;
         }
         public int Id { get; set; }
         public string Course { get; set; }
@@ -28,6 +29,7 @@ namespace WSAD_App1.Models.ViewModels.Course
         public string MeetingDate { get; set; }
         public string MeetingTime { get; set; }
         public int Occupancy { get; set; }
-    
-}
+        public string Description { get; set; }
+
+    }
 }

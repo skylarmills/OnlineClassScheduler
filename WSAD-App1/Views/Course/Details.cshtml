@@ -1,0 +1,64 @@
+﻿@model WSAD_App1.Models.ViewModels.Course.SessionViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Session Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Occupancy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Occupancy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

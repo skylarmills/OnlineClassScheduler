@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace WSAD_App1.Models.Data
+namespace WSAD_App1.Areas.Admin.Models.ViewModels.ManageSession
 {
-    [Table("tblSession")]
-    public class Session
+    public class CreateSessionViewModel
     {
-        [Key]
-        public int Id { get; set; }
+        [Required]
         public string Course { get; set; }
+        [Required]
         public string Instructor { get; set; }
+        [Required]
         public string MeetingDate { get; set; }
+        [Required]
         public string MeetingTime { get; set; }
-        public int Occupancy { get; set; }
+        [Required]
         public string Description { get; set; }
+        //public int Occupancy { get; set; }
     }
 }

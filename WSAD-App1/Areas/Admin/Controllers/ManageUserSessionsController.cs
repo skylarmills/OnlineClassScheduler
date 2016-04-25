@@ -40,5 +40,27 @@ namespace WSAD_App1.Areas.Admin.Controllers
         {
             return View();
         }
+
+        //Unable to get this to work
+        public ActionResult EnrollUserInSession(int sessionId, int userId)
+        {
+            using (WSADDbContext context = new WSADDbContext())
+            {
+                //Get Session
+                Session sessionDTO = context.Sessions.FirstOrDefault(x => x.Id == sessionId);
+                User userDTO = context.Users.FirstOrDefault(x => x.Id == userId);
+
+                //Verify Session
+                if(sessionDTO == null) { return this.HttpNotFound("Invalid Input Parameters"); }
+
+                /* //Verify user is not currently enrolled in this session
+                 UserSession userSessions = context.UserSessions
+                     .Where(row => row.User_Id == userId)
+                     .Where(row => row.Session_Id == sessionId)
+                     */
+
+                return null;
+            }
+        }
     }
 }

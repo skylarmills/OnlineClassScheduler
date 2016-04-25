@@ -59,6 +59,8 @@ namespace WSAD_App1.Controllers
 
                 context.SaveChanges();
             }
+
+            TempData["success"] = "Successfully unenrolled from course(s)";
             return RedirectToAction("Index");
         }
     }

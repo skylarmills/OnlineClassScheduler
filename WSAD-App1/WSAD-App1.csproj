@@ -92,6 +92,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,6 +172,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageSessionController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserSessionsController.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ManageSession\CreateSessionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ManageSession\ManageSessionViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ManageUserSessions\SessionListByUserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -255,6 +257,7 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\ManageSession\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ManageUserSessions\SessionListByUser.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageSession\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -295,6 +298,7 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Schedule.cshtml" />
     <Content Include="Views\Schedule\Index.cshtml" />
+    <Content Include="Views\Course\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

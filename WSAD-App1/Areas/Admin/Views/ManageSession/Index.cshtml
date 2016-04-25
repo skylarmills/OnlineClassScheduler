@@ -1,23 +1,18 @@
-﻿@model List<WSAD_App1.Models.ViewModels.Course.EnrollSessionViewModel>
+﻿@model List<WSAD_App1.Areas.Admin.Models.ViewModels.ManageSession.ManageSessionViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Enroll in Sessions</h2>
+<h2>Manage Sessions</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm("Enroll", "Course"))
+@using (Html.BeginForm("Delete", "ManageSession"))
 {
-    if (TempData["error"] != null)
-    {
-        <div id="ErrorMessage">@Html.Encode(TempData["error"])</div>
-    <button type="submit" class="btn btn-danger">Enroll</button>
-    }
-
+    <button type="submit" class="btn btn-danger">Delete Session(s)</button>
 
 <table class="table">
     <tr>
@@ -29,7 +24,7 @@
             Instructor
         </th>
         <th>
-            MeetingDate
+            Meeting Date
         </th>
         <th>
             MeetingTime
@@ -37,17 +32,20 @@
         <th>
             Occupancy
         </th>
+        <th>
+          Manage
+        </th>
         <th></th>
     </tr>
 
-@*@foreach (var item in Model) {*@
+@*foreach (var item in Model)*@
 @for (int i = 0; i < Model.Count; i++)
 {
     var item = Model[i];
     <tr>
         <td>
-                @Html.HiddenFor(x => Model[i].Id)
-                @Html.CheckBoxFor(x => Model[i].IsSelected)
+            @Html.HiddenFor(x => Model[i].Id)
+            @Html.CheckBoxFor(x => Model[i].IsSelected)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Course)
@@ -65,12 +63,13 @@
             @Html.DisplayFor(modelItem => item.Occupancy)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { sessionId = item.Id }, null)
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
 
 </table>
-
-<button type="submit" class="btn btn-danger">Enroll</button>
+    <button type="submit" class="btn btn-danger">Delete Session(s)</button>
 }

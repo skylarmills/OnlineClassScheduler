@@ -12,26 +12,43 @@ namespace WSAD_App1.Controllers
     public class SessionSearchController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<SessionSearchViewModel> Get(string query)
+        public IEnumerable<SessionSearchViewModel> Get(string term)
         {
-            using(WSADDbContext context = new WSADDbContext())
+
+
+            using (WSADDbContext context = new WSADDbContext())
             {
-                var matches = context.Sessions
-                    .Where(row => row.Course.StartsWith(query));
-
-
+                IQueryable<Session> matches;
                 List<SessionSearchViewModel> ssVM = new List<SessionSearchViewModel>();
 
-                foreach(var sessionDTO in matches)
+                if (string.IsNullOrWhiteSpace(term))
                 {
-                    ssVM.Add(new SessionSearchViewModel(sessionDTO));
+                    matches = context.Sessions.AsQueryable();
+                }
+                else {
+                    matches = context.Sessions
+                        .Where(row => row.Course.StartsWith(term));
+
+
+                    
                 }
 
-                return ssVM;
-            }
+                    foreach (var sessionDTO in matches)
+                    {
+                        ssVM.Add(new SessionSearchViewModel(sessionDTO));
+                    }
+
+                    return ssVM;
+                }
+            
         }
 
-        /*// GET api/<controller>/5
+        /*public IEnumerable<string> Get()
+        {
+            return new string[] { "Value1", "Value2" };
+        }
+
+        // GET api/<controller>/5
         public string Get(int id)
         {
             return "value";

@@ -29,11 +29,15 @@
                     {
                         <li>@Html.ActionLink("Logout","Logout","Account")</li>
                         <li>@Html.Action("UserNavPartial","Account", new { area = "" })</li>
+                        <li>@Html.ActionLink("Manage Users", "Index", "ManageUser", new { area = "Admin" }, null)</li>
+                        <li>@Html.ActionLink("Manage Sessions", "Index", "ManageSession", new { area = "Admin" }, null)</li>
+
                     }
                     else
                     {
                         <li>@Html.ActionLink("Login","Login","Account")</li>
                     }
+                   
                 </ul>
             </div>
         </div>

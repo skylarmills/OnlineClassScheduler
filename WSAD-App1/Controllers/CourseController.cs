@@ -33,6 +33,7 @@ namespace WSAD_App1.Controllers
             return View(collectionOfSessionVM);
         }
 
+
         [HttpPost]
         public ActionResult Enroll(List<EnrollSessionViewModel> collectionOfSessionsVM)
         {
@@ -42,13 +43,13 @@ namespace WSAD_App1.Controllers
             //Get logged in user
             string username = User.Identity.Name;
             User userDTO;
-            
+
 
             //Do Enroll
 
             using (WSADDbContext context = new WSADDbContext())
             {
-      
+
 
                 //Get user db info an Id
                 userDTO = context.Users.FirstOrDefault(row => row.Username == username);
@@ -59,28 +60,44 @@ namespace WSAD_App1.Controllers
                     UserSession userSessionDTO = new UserSession();
                     var sessionDTO = context.Sessions.FirstOrDefault(row => row.Id == vmItem.Id);
 
-                    
+
                     userSessionDTO.User_Id = userId;
                     userSessionDTO.Session_Id = vmItem.Id;
 
-                   /* //Check session hasn't already been enrolled by user
+                    //Check that session hasn't already been enrolled by user
                     if (context.UserSessions.Any(row => row.User_Id.Equals(userId)) && context.UserSessions.Any(row => row.Session_Id.Equals(vmItem.Id)))
                     {
-                        ModelState.AddModelError("", "Session '" + sessionDTO.Course + "' is already registered. Try Again");
-                        return View(collectionOfSessionsVM);
+                        TempData["error"] = "Error: You are already enrolled in this course.";
+                        return RedirectToAction("Index");
 
-                    }*/
+                    }
 
-                   // else {
-                    context.UserSessions.Add(userSessionDTO);
-                 //   }
+                    else {
+                        context.UserSessions.Add(userSessionDTO);
+                    }
 
                 }
 
                 context.SaveChanges();
             }
+
             return RedirectToAction("Index", "Schedule");
 
+
+        }
+
+        [HttpGet]
+        public ActionResult Details(int sessionId)
+        {
+            SessionViewModel sessionVM = new SessionViewModel();
+
+            using (WSADDbContext context = new WSADDbContext())
+            {
+                Session session = context.Sessions.FirstOrDefault(row => row.Id == sessionId);
+                sessionVM = new SessionViewModel(session);
+            }
+
+            return View(sessionVM);
         }
     }
 }

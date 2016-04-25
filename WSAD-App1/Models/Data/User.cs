@@ -23,5 +23,7 @@ namespace WSAD_App1.Models.Data
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public string Gender { get; set; }
+
+
     }
 }

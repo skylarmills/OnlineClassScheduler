@@ -9,6 +9,13 @@
 
 @using (Html.BeginForm("Delete", "Schedule"))
 {
+   /* if(TempData["success"] != null) {
+      <div id="SuccessMessage">@Html.Encode(TempData["success"])</div>
+    }
+    <div>
+        <label>Enroll in Courses: </label>
+        @Html.TextBox("SessionSearch", null, new { placeholder = "Type Course Name to Search:", @class = "form-control" })
+    </div>*/
 <table class="table">
     <tr>
         <th>
@@ -62,3 +69,12 @@
 </table>
 <button type="submit" class="btn btn-danger">Delete Session</button>
 }
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    <script>
+        var i = 0;
+
+            }})
+    </script>
+    }
