@@ -12,7 +12,7 @@ namespace WSAD_App1.Areas.Admin.Models.ViewModels.ManageUser
         {
 
         }
-
+        //
         public ManageUserViewModel(User userDTO)
         {
             Id = userDTO.Id;
